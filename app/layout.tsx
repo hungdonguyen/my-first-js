@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar"; 
 import "./globals.css";
 import Footer from "@/components/Footer";
+import Sidebar from "@/components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,13 +31,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {/* Nội dung trang con sẽ được nhét vào chỗ children này */}
-        <main className="min-h-screen">
-            {children}
-        </main>
-        {/* Thử thêm Footer luôn */}
-        <Footer />
+        <div className="flex h-screen overflow-hidden">
+          <Sidebar />
+          {/* 2. Nội dung chính bên phải (tự giãn với flex-1) */}
+          <main className="flex-1 bg-gray-100 p-8 overflow-y-auto">
+             {children}
+          </main>
+        </div>
+        
       </body>
     </html>
   );
